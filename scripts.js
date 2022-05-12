@@ -54,7 +54,10 @@
 		}
 		const p1 = new Person();
 */
-// Funciones Recursivas (Recursividad)
+
+
+
+// FUNCIONES RECURSIVAS (Recursividad)
 	// Cuando una función se llama a sí misma.
 /*	const validarEdad = (msg)=>{
 		let edad;
@@ -73,7 +76,10 @@
 	validarEdad();
 */
 
-// Clausuras (o cierres)
+
+
+
+// CLAUSURAS (o cierres)
 	// Son funciones que retornan otras funciones
 /*	const cambiarTamaño = size=>{
 		return ()=>{	// si no retornamos una función, el evento no funcionará porque requiere una función como segundo parámetro y no el resultado de la función.
@@ -159,3 +165,62 @@
 
 		//2. Fábrica de funciones: ya que podemos colocar la variable contador como parámetro y luego llamar a la función enviando como parámetro el valor inicial del contador.
 	
+
+
+
+// PARÁMETROS POR DEFECTO:
+// Cuando llamamos a una función que requiere parámetros, sin pasarle los parámetros, el valor de éstos será 'undefined'. Para darle un valor por defecto, lo podemos hacer de la siguiente manera:
+	const suma = (a = 0, b = 0)=>{
+		let resultado = a + b;
+		console.log('el resultado de la suma es: ', resultado);
+	}
+	suma(); // muestra '0'. (si no le configuraramos los parámetros por defecto, el resultado sería 'NaN' (undefined + undefined)).
+
+ 
+
+ // PARÁMETRO REST
+ // Permite representar un número indefinido de argumentos como un array.
+ 	const multiplicar = (...arg) => {
+ 		console.log(arg);	// muestra un array con los argumentos
+ 		let resultado = 1;
+ 		for (let i = arg.length - 1; i >= 0; i--) {
+ 			resultado *= arg[i] 
+ 		}
+ 		console.log('el resultado de la multiplicación es: ',resultado)
+ 	}
+ 	multiplicar(2,3,5,10);
+
+ 
+
+// DESTRUCTURING (desestructuración)
+// Expresión para hacer posible la extracción de datos desde arrays y objetos.
+	//en objetos:
+	const person = {
+		name: "Gastón",
+		age: 34,
+		email: "gasnvillarruel@gmail.com"
+	}
+
+	const {name, age, email} = person; // si queremos cambiar el nombre de la variable que guarda la propiedad, deberíamos escribir, por ejemplo, "{name:nombre}"
+	console.log(name, age, email);
+	
+	//en arrays:
+	const numbers = [1, 2, 3, 4];
+
+	const [one, two, three, four] = numbers;
+	console.log(four);
+
+
+	//Función destructuradora:
+	const destructurarArray = ([a,b])=>{
+		console.log('el segundo valor del array es: ', b)
+	}
+
+	destructurarArray(numbers);
+
+	//desestructurar petición:
+	const getUsers = async ()=>{
+		const {data:users} = await axios('http://jsonplaceholder.typicode.com/users')
+		console.log("la propiedad data de la petición realizada contiene el siguiente valor: ",users)
+	}
+	getUsers();
